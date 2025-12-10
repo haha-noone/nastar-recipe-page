@@ -1,0 +1,343 @@
+/* Reset default margin & padding dari browser
+   Kenapa? Setiap browser punya default spacing berbeda,
+   ini bikin konsisten di semua browser */
+* {
+   
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box; /* Bikin width/height include padding & border */
+}
+
+body {
+   font-family: 'Georgia', 'Times New Roman', serif;
+   background: linear-gradient(180deg, #fff5e6 0%, #ffe8d1 100%);
+   min-height: 100vh; /* Min-height 100vh = minimal setinggi viewport (layar), jadi background menutupi seluruh layar meskipun konten sedikit */
+   /* Padding 2rem = kasih jarak di semua sisi (top, right, bottom, left)
+      1rem biasanya = 16px, jadi 2rem = 32px */
+   padding: 2rem;
+   /* Line-height: jarak antar baris text
+      1.6 = 160% dari font-size, bikin text lebih enak dibaca */
+   line-height: 1.6;
+   color: #3e2723;
+}
+
+.container {
+   max-width: 900px;
+   /* Margin auto = centering horizontal
+      Atas-bawah 0, kiri-kanan auto = elemen di tengah */
+   margin: 0 auto;
+   background: #ffffff;
+   border-radius: 20px;
+   /* Box-shadow: bayangan dibelakang card
+      Format: x-offset y-offset blur spread color
+      0 10px = bayangan ke bawah 10px
+      40px = blur radius (semakin besar semakin lembut)
+      rgba = warna dengan transparency (0.1 = 10% opacity) */
+   box-shadow: 0 10px 40px rgba(62, 39, 35, 0.1);
+   /* Overflow hidden: potong elemen yang keluar dari border-radius
+      Penting biar image di atas ikut rounded */
+   overflow: hidden;
+   /* HOVER EFFECT #1: Card Shadow Enhacement
+      Transition: bikin perubahan jadi smooth
+      Property yang di-animate: box-shadow & transform
+      Duration: 0.4s (400 milliseconds) - sweet spot buat elegant
+      Timing: ease = smooth start & end */
+   transition: box-shadow 0.4s ease, transform 0.3s ease;
+}
+
+.container:hover {
+   /* Shadow jadi lebih besar & lebih gelap = efek "angkat" */
+   box-shadow: 0 20px 60px rgba(62, 39, 35, 0.15);
+   /* Transform translateY: geser ke atas 5px
+      Negative value = ke atas, positive = ke bawah
+      Ini bikin ilusi card "terangkat" */
+   transform: translateY(-5px);
+}
+
+.container img {
+   /* Width 100% = selebar container
+      Height 400px = tinggi fixed
+      Object-fit cover = gambar di-crop biar gak distorsi
+      Display block = hilangkan space bawah image (default inline punya gap) */
+   width: 100%;
+   height: 400px;
+   object-fit: cover;
+   display: block;
+   /* HOVER EFFECT #2: Image Zoom
+      Transition smooth buat scale (zoom) & brightnees */
+   transition: transform 0.6s ease, filter 0.4s ease;
+} 
+
+/* Hover pada image: Zoom in subtle + brigntness sedikit naik */
+.container img:hover {
+   /* Scale 1.05 = zoom 105% (5% lebih besar) 
+      Origin dari center, jadi zoom ke tengah */
+   transform: scale(1.05);
+   /* Brightness 1.1 = 110% brightness (10% lebih terang)
+      Bikin image lebih "hidup" pas di-hover */
+   filter: brightness(1.1) saturate(1.1);
+}
+
+.content {
+   /* Padding: jarak dari tepi card ke konten
+      3rem = 48px, kasih breathing room yang cukup
+      EKSPERIMEN: Coba ubah jadi 2rem atau 4rem, rasain bedanya! */
+   padding: 3rem;
+}
+
+h1 {
+   /* 2.5rem = 40px (asumsi base 16px) */
+   font-size: 2.5rem;
+   /* Warna accent warm (golden brown) */
+   color: #d4a574;
+   /* Margin bottom: jarak ke elemen di bawahnya */
+   margin-bottom: 1rem;
+   /* 700 = bold */
+   font-weight: 700;
+   /* Letter-spacing: jarak antar huruf
+      -0.5px = sedikit lebih rapat, kasih kesan elegant */
+   letter-spacing: -0.5px;
+   /* Transition buat color & letter-spacing */
+   transition: color 0.3s ease, letter-spacing 0.3s ease;
+}
+
+/* HOVER EFFECT #3: H1 interactive
+   Warna jadi lebih gelap + letter-spacing sedikit melebar */
+h1:hover {
+   color: #b8935f;
+   letter-spacing: 0.5px; /* Dari -0.5px jadi 0.5px = huruf melebar */
+   /* Cursor pointer: tangan kecil, kasih hint ini clickable
+      (Walau gak clickable, tapi bikin feel interactive) */
+   cursor: default;
+}
+
+.content > p {
+   font-size: 1.1rem;
+   color: #6d4c41;
+   margin-bottom: 2.5rem;
+   font-style: italic;
+   /* Border left: garis vertikal di kiri text
+      4px = tebal garis, solid = garis penuh (bukan putus-putus) */
+   border-left: 4px solid #d4a574;
+   /* Padding left: jarak dari garis ke text */
+   padding-left: 1.5rem;
+   /* Transition buat border & padding */
+   transition: border-color 0.3s ease, padding-left 0.3s ease;
+}
+
+/* HOVER EFFECT #4: Intro Paragraph 
+   Border lebih jadi tebal (Visual cue: "hey baca aku!") */
+.content > p:hover {
+   border-left: 6px solid #d4a574; /* Dari 4px jadi 6px */
+   padding-left: 1.65rem; 
+}
+
+h2 {
+   font-size: 1.8rem;
+   color: #8d6e63;
+   /* Margin top:jarak dari elemen sebelumnya
+      Margin bottom: jarak ke elemen berikutnya
+      Top lebih besar = kasih breathing room antar section */
+   margin-top: 2.5rem;
+   margin-bottom: 1.2rem;
+   font-weight: 600;
+   /* Border bottom: garis horizontal di bawah h2
+      2px solid = garis 2px tebal, warna cream
+      Padding bottom = jarak dari text ke garis */
+   border-bottom: 2px solid #ffecb3;
+   padding-bottom: 0.5rem;
+   /* Transition buat border & color */
+   transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+/* HOVER EFFECT #5: H2 Section Headers 
+   Border jadi lebih kontras */
+h2:hover {
+   color: #6d4c41; /* Sedikit lebih gelap */
+   border-bottom: 2px solid #d4a574; /* Border jadi gold */
+}
+
+h3 {
+   font-size: 1.3rem;
+   color: #a1887f;
+   margin-top: 1.5rem;
+   margin-bottom: 0.8rem;
+   font-weight: 600;
+   transition: color 0.3s ease;
+}
+
+h3:hover {
+   color: #8D6E63; /* Matching dengan h2 color */
+}
+
+ul {
+   /* List-style none: hilangkan bullet default 
+      Kenapa? kita mau bikin custom */
+   list-style: none;
+   margin-bottom: 2rem;
+}
+
+ul li {
+   /* Padding vertical: jarak artas-bawah tiap item
+      Padding left: jarak dari kiri (buat tempat custom bullet) */
+   padding: 0.7rem 0;
+   padding-left: 2rem;
+   /* Position relative: buat nge-position pseudo element (:before) */
+   position: relative;
+   color: #5d4037;
+   font-size: 1.05rem;
+   /* HOVER EFFECT #6: List Items Background
+      Border-radius + background color + padding */
+   transition: background-color 0.3s ease, padding-left 0.3s ease, border-radius 0.3s ease;
+   border-radius: 8px; /* Sudah ada border-radius, jadi smooth */
+}
+
+/* Hover pada ingredient items */
+ul li:hover {
+   /* background cream lembut - subtle banget! */
+   background-color: #fff8e7;
+   /* Padding left sedikit bertambah = efek "slide in" */
+   padding-left: 2.3rem;
+   /* KENAPA INI BAGUS:
+      - Gak norak (warna subtle) 
+      - Ada feedback ke user ("gua hover yang mana nih") 
+      - Smooth transition bikin profesional */
+}
+
+/* Pseudo-element :before - custom bullet */
+ul li:before {
+   /* Content: apa yang ditampilkan */
+   content: "✓";
+   /* Position absolute: keluar dari normal flow
+      parent (li) harus position: relative */
+   position: absolute;
+   left: 0; /* Posisi dari kiri */
+   color: #81c784;
+   font-weight: bold;
+   font-size: 1.2rem;
+   /* HOVER EFFECT #7: Checkmark Animation
+      Scale + rotate bikin playful tapi tetap subtle */
+   transition: transform 0.3s ease, color 0.3s ease;
+}
+
+ul li:hover:before {
+   /* Scale 1.3 = 30% lebih besar
+      Rotate 360deg = putar satu putaran penuh (Fun!) */
+   transform: scale(1.3) rotate(-15deg);
+   /* Warna jadi vibrant */
+   color: #66bb6a;
+}
+
+ol {
+   /* Counter-reset: mulai numbering dari 1
+      Kita bikin custom numbering, bukan pake default browser */
+   counter-reset: step-counter;
+   list-style: none;
+   margin-bottom: 2rem;
+}
+
+ol li {
+   /* Counter-increament: tambah 1 tiap li
+      Variabel 'step-counter' otomatis increment */
+   counter-increment: step-counter;
+   padding: 1rem 0;
+   padding-left: 3.5rem; /* Lebih besar karena circle numbernya butuh ruang */
+   position: relative;
+   color: #5d4037;
+   font-size: 1.05rem;
+   /* Border bottom: garis pemisah antar step */
+   border-bottom: 1px solid #efebe9;
+   /* Transition sama kayak ul li */
+   transition: background-color 0.3s ease, padding-left 0.3s ease;
+   border-radius: 8px;
+}
+
+/* Hover pada instruction steps */
+ol li:hover {
+   background-color: #fff8e7;
+   padding-left: 3.7rem; /* Sedikit geser */
+}
+
+ol li:last-child {
+   border-bottom: none;
+}
+
+ol li:before {
+   /* Content: tampilkan angka dari counter */
+   content: counter(step-counter);
+   position: absolute;
+   left: 0;
+   /* Background: circle dengan warna accent */
+   background: #8d6e63;
+   color: white;
+   /* Width & height sama = bikin circle
+      Border-radius 50% = circle perfect */
+   width: 2.2rem;
+   height: 2.2rem;
+   border-radius: 50%;
+   /* Flexbox: center text di dalam text
+      Display flex + align-items + justify-content = perfect centering */
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-weight: bold;
+   font-size: 1rem;
+   /* HOVER EFFECT #8: Number Circle Animation 
+      Scale + shadow = efek "pop out" */
+   transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+               box-shadow 0.3s ease,
+               background-color 0.3s ease;
+
+   /* cubic-bezier = custom timing function (elastic bounce effect)
+      Ini yang bikin number circle "bouncy" pas di-hover! */
+}
+
+ol li:hover:before {
+   /* Scale 1.2 = 20% lebih besar
+      transform ini independent dari parent (ol li) */
+   transform: scale(1.2);
+   /* Shadow bikin efek (floating) */
+   box-shadow: 0 4px 12px rgba(141, 110, 99, 0.3);
+   /* background jadi lebih vibrant */
+   background-color: #a1887f;
+
+   /* KENAPA PAKE cubic-bezier:
+      - Bikin bounce effect yang playful
+      - Professional websites sering pake ini
+      - User jadi lebih "engaged" */
+}
+
+/* Media query: CSS yang aktif kalo kondisi terpenuhi
+   max-width 768px = kalo layar maksimal 768px (tablet & mobile) */
+@media (max-width: 768px) {
+   /* Reduce padding di content */
+   body {
+      padding: 1rem;
+   }
+   /* Reduce padding di content */
+   .content {
+      padding: 2rem 1.5rem;
+   }
+
+   /* Font size lebih kecil di mobile */
+   h1 {
+      font-size: 2rem; /* Dari 2.5rem jadi 2rem */
+   }
+   h2 {
+      font-size: 1.5rem; /* Dari 1.8rem jadi 1.5rem */
+   }
+   /* Image height lebih kecil biar gak terlalu dominan */
+   .container img {
+      height: 250px; /* Dari 400px jadi 250px */
+   }
+
+   /* DI MOBILE: Hover gak terlalu penting
+       Karena mobile = touch, bukan mouse hover
+       Tapi transitionnya tetep jalan kalo ada interaction */
+
+   /* Disabled card hover effect di mobile
+      Karena "hover" di touch screen = tap & hold (awkward) */
+   .container:hover {
+      transform: none; /* Matiin translateY */
+   }
+}
